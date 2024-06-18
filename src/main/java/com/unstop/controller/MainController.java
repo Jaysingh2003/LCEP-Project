@@ -21,19 +21,48 @@ public class MainController {
     private UserService userService;
 
     @GetMapping("/")
-    public String homePage() {
-        return "landing";
+    public String homePage(Model model) {
+     
+    	model.addAttribute("hidden","none");
+    	
+    	return "landing";
+       
     }
 
     @PostMapping("/register")
     public String registerPage(@ModelAttribute User user, Model model) {
         System.out.println("User: "+user);
+       
         model.addAttribute("message", "Registration Unsuccessful");
+    	model.addAttribute("alertType","danger");
 
         if (userService.registerUser(user) != null) {
+        	model.addAttribute("alertType","success");
            model.addAttribute("message", "Registration Successful");
            
         }
         return "index";
     }
+    @PostMapping("/login")
+    public String loginPage(@ModelAttribute User user, Model model) {
+    	 
+    	System.out.println("User: "+user);
+   	
+    	if (userService.userLogin(user) != null) {
+    		
+             model.addAttribute("message", "login Successful");
+             model.addAttribute("alertType","success");
+             return "index";
+           
+          }
+    	model.addAttribute("hidden","block");
+    	model.addAttribute("message","Authentication Failed");
+    	model.addAttribute("alertType","danger");
+    	return "landing";
+    	
+    }
+    
+    
+
+    
 }

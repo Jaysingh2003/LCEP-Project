@@ -16,7 +16,23 @@ public class UserService {
 	public User registerUser(User user) {
 		return userRepository.save(user);
 	}
+
+
+	public User userLogin(User user) {
+		
+		if(user.getEmail()==null) {
+			return null;
+		}
+        User foundUser = userRepository.findByEmail(user.getEmail());
+        
+        if (foundUser != null && foundUser.getPass().equals(user.getPass())) {
+            return foundUser;
+        } 
+        
+       
+            return null;
+      
 	
 	
 
-}
+}}
