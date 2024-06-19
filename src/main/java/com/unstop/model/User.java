@@ -2,6 +2,9 @@ package com.unstop.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,16 +19,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
     private String name;
+    
+    @Column(nullable=false,unique = true)
     private String email;
+  
+    @Column(nullable = false)
     private String pass;
+    @Column(nullable = false)
     private String contNo;
+//    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String profile;
+//    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public User(Long id, String name, String email, String pass, String contNo, String address, String profile,
 			Date dob) {

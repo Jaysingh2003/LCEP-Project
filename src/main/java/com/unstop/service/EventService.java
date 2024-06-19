@@ -1,5 +1,7 @@
 package com.unstop.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class EventService {
 	private EventRepository eventRepository;
 	
 	public Event createEvent(Event event) {
-		
+		event.setEventPostTime(new Date());
 		return eventRepository.save(event);
 	}
 

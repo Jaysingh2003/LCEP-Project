@@ -35,10 +35,11 @@ public class MainController {
        
         model.addAttribute("message", "Registration Unsuccessful");
     	model.addAttribute("alertType","danger");
-
-        if (userService.registerUser(user) != null) {
+    	User registeredUser = userService.registerUser(user);
+        if (registeredUser != null) {
         	model.addAttribute("alertType","success");
            model.addAttribute("message", "Registration Successful");
+           model.addAttribute("userId", registeredUser.getId());
            
         }
         return "index";
@@ -47,11 +48,12 @@ public class MainController {
     public String loginPage(@ModelAttribute User user, Model model) {
     	 
     	System.out.println("User: "+user);
-   	
-    	if (userService.userLogin(user) != null) {
+   	User loggedInUser = userService.userLogin(user);
+    	if ( loggedInUser != null) {
     		
              model.addAttribute("message", "login Successful");
              model.addAttribute("alertType","success");
+             model.addAttribute("userId", loggedInUser.getId());
              return "index";
            
           }

@@ -2,7 +2,10 @@ package com.unstop.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,21 +14,31 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Event {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long eventId;
+	@Column(nullable = false)
 	private String eventTitle;
+	@Column(nullable = false)
 	private String eventDescription;
+	@Column(nullable = false)
 	private String eventAddress;
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date eventTime;
-	
+//	@Column(nullable = false)
+	private String category;
+//	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private Date eventPostTime;
+
 	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
 	private User eventOrganizer;
 
 	public Event() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Event(Long eventId, String eventTitle, String eventDescription, String eventAddress, Date eventTime,
@@ -86,15 +99,27 @@ public class Event {
 		this.eventOrganizer = eventOrganizer;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public Date getEventPostTime() {
+		return eventPostTime;
+	}
+
+	public void setEventPostTime(Date eventPostTime) {
+		this.eventPostTime = eventPostTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventTitle=" + eventTitle + ", eventDescription=" + eventDescription
 				+ ", eventAddress=" + eventAddress + ", eventTime=" + eventTime + ", eventOrganizer=" + eventOrganizer
 				+ "]";
 	}
-	
-	
-	
-	
 
 }
