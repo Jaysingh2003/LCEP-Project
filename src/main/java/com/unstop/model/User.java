@@ -1,17 +1,18 @@
 package com.unstop.model;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="user001")
@@ -30,13 +31,18 @@ public class User {
     private String pass;
     @Column(nullable = false)
     private String contNo;
-//    @Column(nullable = false)
+
     private String address;
+    
     @Column(nullable = false)
     private String profile;
-//    @Column(nullable = false)
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
+    
+    @OneToMany(mappedBy = "eventOrganizer", cascade = CascadeType.ALL)
+    private List<Event> events;
+    
 	public User() {
 		super();
 		

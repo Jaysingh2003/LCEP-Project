@@ -2,15 +2,18 @@ package com.unstop.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Event {
@@ -27,15 +30,20 @@ public class Event {
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date eventTime;
-//	@Column(nullable = false)
+
 	private String category;
-//	@Column(nullable = false)
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private Date eventPostTime;
 
-	@OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	
+
+	@ManyToOne( cascade = CascadeType.ALL)
 	private User eventOrganizer;
 
+	@Lob
+    private byte[] eventImage;
+	
 	public Event() {
 		super();
 
@@ -115,6 +123,14 @@ public class Event {
 		this.eventPostTime = eventPostTime;
 	}
 
+	public byte[] getEventImage() {
+		return eventImage;
+	}
+
+	public void setEventImage(byte[] eventImage) {
+		this.eventImage = eventImage;
+	}
+	
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventTitle=" + eventTitle + ", eventDescription=" + eventDescription
