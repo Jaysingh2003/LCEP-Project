@@ -42,7 +42,7 @@ public class Event {
 	private User eventOrganizer;
 
 	@Lob
-    private byte[] eventImage;
+    private String eventImage;
 	
 	public Event() {
 		super();
@@ -123,11 +123,11 @@ public class Event {
 		this.eventPostTime = eventPostTime;
 	}
 
-	public byte[] getEventImage() {
+	public String getEventImage() {
 		return eventImage;
 	}
 
-	public void setEventImage(byte[] eventImage) {
+	public void setEventImage(String eventImage) {
 		this.eventImage = eventImage;
 	}
 	

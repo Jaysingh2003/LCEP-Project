@@ -564,7 +564,7 @@ h3 {
 												type="file" class="form-control-file" id="eventImage"
 												name="file" accept="image/jpeg, image/png">
 										</div>
-										<input type="text" name="userId" value="${userId}" placeholder="${userId}">
+										<input type="hidden" name="userId" value="${userId}" placeholder="${userId}">
 
 										<div class="form-group">
 											<label for="eventCategory">Event Category:</label> <select
@@ -698,7 +698,7 @@ h3 {
 							<p><%= event.getEventDescription() %></p>
 						</div>
 					</div>
-					<img id="post-img"  src="${pageContext.request.contextPath}/images/post-img.jpg" alt="Event Image">
+					<img id="post-img"  src="${pageContext.request.contextPath}<%= event.getEventImage() %>" alt="Event Image">
 					<div id="post-lower">
 						<div class="post-like">
 							<i class="fa-regular fa-heart like-icon"></i>
@@ -720,51 +720,7 @@ h3 {
 				<% } %>
 
 
-        <!-- posted card without image -->
-        <div id="post">
-            <div id="post-upper">
-                <div id="post-up-left">
-                    <img id="post-up-left-cicle" src="images/post-4.png" alt="">
-                </div>
-                <div id="post-up-right">
-                    <div id="post-up-right-up">
-                        <h3 style=" position:absolute ;margin-left:  10px ; margin-top: 10px; color: var(--graydark) ;font-weight: bold; ">Name of The User<span style="color: rgb(0, 136, 255);"> . follow</span></h3>
-                      <!-- <i class="fa-solid fa-xmark xmark"></i> -->
-                    </div>
-                    
-                    
-                    <div id="post-up-right-low">
-                        <h3 style="font-size: 15px; position:absolute ;margin-left:  10px ; margin-top: 10px; color: var(--graydark) "> 10 April 2024</h3>
-                 
-                    </div>
-                </div>
-                    
-                    
-                </div>
-                <div id="post-text">
-                    <hr>
-                    <div><h3><span style="font-weight: bold;">Event Titile: </span>New Event of Lcep</h3></div> <hr>
-                    <div><h3><span style="font-weight: bold;">Time :</span> 12/10/24 12:30 Pm</h3></div> <hr>
-                    <div><h3><span style="font-weight: bold;">Address:</span> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero consequatur provident optio suscipit eius impedit ipsum ea ut possimus tempore.</h3></div> <hr>
-        
-                    <div class="post-text-in"><span style="font-weight: bold;">Description:</span> <p> हिन्दू धर्म में दान (हिन्दू धर्म के महादान)का अत्यधिक महत्व है। प्राचीन समय से ही राजा-महाराजा हवन, पूजा-पाठ, अनुष्ठान आदि करने के बाद अपनी प्रजा में अन्न, वस्त्र, भोजन आदि बांटते थे। आज भी धार्मिक कार्यों के बाद मंदिरों की ओर से होने वाले अन्न दान ने भंडारे का रूप ले लिया है। हालांकि अब घरों में पूजा-पाठ के बाद लोग भंडारा कम ही आयोजित करते हैं लेकिन मंदिरों और बड़े स्थानों पर यह परंपरा आज भी चली आ रही है।</p></div>
-                
-                </div>
-                <hr>
-            <!-- <img id="post-img" src="images/post-img.jpg" alt=""> -->
-            <div id="post-lower">
-                 <div class="post-like">
-                  <i class="fa-regular fa-heart like-icon"></i>
-                  <div class="like-count"><h5 style="color:var(--graydark);">2k <span>Likes</span></h5></div>
-                 </div>
-                 <div class="post-comment">
-                    <i class="fa-regular fa-comments"></i>
-                 </div>
-                 <div class="post-triple-dot">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                 </div>
-                </div>
-            </div>
+    
         
       
     </div>  
